@@ -23,5 +23,12 @@ namespace SideBySide.WebApi.Controllers
         {
             return WeatherForecast.GetRandomForecast(7);
         }
+
+        [HttpPut]
+        [Route("/put")]
+        public string Put(string id, WeatherForecast weatherForecast)
+        {
+            return this.HttpContext.Request.Method;
+        }
     }
 }

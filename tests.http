@@ -1,0 +1,31 @@
+get https://localhost:4001/
+Content-Type: application/json
+
+###
+
+get https://localhost:5001/
+Content-Type: application/json
+
+###
+
+put https://localhost:4001/put?id=1
+Content-Type: application/json
+
+{
+  "date": "2021-08-05T15:54:43.987Z",
+  "temperatureC": 23,
+  "summary": "Warm"
+}
+
+###
+
+put https://localhost:5001/put?id=1
+Content-Type: application/json
+
+{
+  "date": "2021-08-05T15:54:43.987Z",
+  "temperatureC": 32,
+  "summary": "Hot"
+}
+
+###

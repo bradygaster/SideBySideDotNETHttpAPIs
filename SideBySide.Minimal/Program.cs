@@ -34,4 +34,11 @@ app.MapGet("/", () =>
     return WeatherForecast.GetRandomForecast(7);
 });
 
+app.MapPut("/put", (string id, 
+                    WeatherForecast weatherForecast, 
+                    HttpContext httpContext) =>
+{
+    return httpContext.Request.Method;
+});
+
 app.Run();
