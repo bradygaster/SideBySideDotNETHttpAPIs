@@ -1,4 +1,3 @@
-
 using SideBySide.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,11 +33,21 @@ app.MapGet("/", () =>
     return WeatherForecast.GetRandomForecast(7);
 });
 
-app.MapPut("/put", (string id, 
-                    WeatherForecast weatherForecast, 
+app.MapGet("/testOutputFormatting", (HttpContext httpContext) =>
+{
+    return httpContext.Request.Method;
+});
+
+app.MapPut("/put", (string id,
+                    WeatherForecast weatherForecast,
                     HttpContext httpContext) =>
 {
     return httpContext.Request.Method;
+});
+
+app.MapPost("/post", (WeatherForecast weatherForecast) =>
+{
+    return weatherForecast;
 });
 
 app.Run();

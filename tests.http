@@ -1,12 +1,14 @@
+### gets the forecast from the minimal
+
 get https://localhost:4001/
 Content-Type: application/json
 
-###
+### gets the forecast from the web api
 
 get https://localhost:5001/
 Content-Type: application/json
 
-###
+### test a put request against minimal
 
 put https://localhost:4001/put?id=1
 Content-Type: application/json
@@ -17,7 +19,7 @@ Content-Type: application/json
   "summary": "Warm"
 }
 
-###
+### test a put request against web api
 
 put https://localhost:5001/put?id=1
 Content-Type: application/json
@@ -28,4 +30,57 @@ Content-Type: application/json
   "summary": "Hot"
 }
 
-###
+### can i post to a put in minimal?
+
+post https://localhost:4001/put?id=1
+Content-Type: application/json
+
+{
+  "date": "2021-08-05T15:54:43.987Z",
+  "temperatureC": 23,
+  "summary": "Warm"
+}
+
+### can i post to a put in web api?
+
+post https://localhost:5001/put?id=1
+Content-Type: application/json
+
+{
+  "date": "2021-08-05T15:54:43.987Z",
+  "temperatureC": 32,
+  "summary": "Hot"
+}
+
+### what if i post xml when the minimal api expects me to post json?
+
+post https://localhost:4001/post
+Content-Type: application/xml
+
+<weatherForecast>
+    <date>2021-08-05T15:54:43.987Z</date>
+    <temperatureC>23</temperatureC>
+    <summary>Warm</summary>
+</weatherForecast>
+
+### what if i post xml when the web api expects me to post json?
+
+post https://localhost:5001/post
+Content-Type: application/xml
+
+<weatherForecast>
+    <date>2021-08-05T15:54:43.987Z</date>
+    <temperatureC>32</temperatureC>
+    <summary>Hot</summary>
+</weatherForecast>
+
+### demonstrate how minimal doesn't double-quote strings when the content-type is application/json
+
+get https://localhost:4001/testOutputFormatting
+Content-Type: application/json
+
+### demonstrate how web api does double-quote strings when the content-type is set to application/json
+
+get https://localhost:5001/testOutputFormatting
+Content-Type: application/json
+

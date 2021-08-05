@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Logging;
 using SideBySide.Shared;
 using System.Collections.Generic;
@@ -24,11 +23,25 @@ namespace SideBySide.WebApi.Controllers
             return WeatherForecast.GetRandomForecast(7);
         }
 
-        [HttpPut]
-        [Route("/put")]
-        public string Put(string id, WeatherForecast weatherForecast)
+        [HttpGet]
+        [Route("/testOutputFormatting")]
+        public string TestOutputFormatting()
         {
             return this.HttpContext.Request.Method;
+        }
+
+        [HttpPut]
+        [Route("/put")]
+        public WeatherForecast Put(string id, WeatherForecast weatherForecast)
+        {
+            return weatherForecast;
+        }
+
+        [HttpPost]
+        [Route("/post")]
+        public WeatherForecast Post(WeatherForecast weatherForecast)
+        {
+            return weatherForecast;
         }
     }
 }
