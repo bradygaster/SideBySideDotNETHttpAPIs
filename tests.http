@@ -84,3 +84,26 @@ Content-Type: application/json
 get https://localhost:5001/testOutputFormatting
 Content-Type: application/json
 
+### upload a file to minimal api
+post https://localhost:4001/upload
+Accept: application/json
+Content-Type: multipart/form-data; boundary=FormData
+
+--FormData
+Content-Disposition: form-data; name="file"; filename="api.png"
+Content-Type: application/octet-stream
+
+< .\api.png
+--FormData--
+
+### upload a file to web api
+post https://localhost:5001/upload
+Accept: application/json
+Content-Type: multipart/form-data; boundary=FormData
+
+--FormData
+Content-Disposition: form-data; name="file"; filename="api.png"
+Content-Type: application/octet-stream
+
+< .\api.png
+--FormData--

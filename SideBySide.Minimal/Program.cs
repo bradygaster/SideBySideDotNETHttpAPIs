@@ -50,4 +50,35 @@ app.MapPost("/post", (WeatherForecast weatherForecast) =>
     return weatherForecast;
 });
 
+//app.MapPost("/upload", async (IFormFile file, CancellationToken token) =>
+//{
+//    using (var stream = System.IO.File.OpenWrite("upload.txt"))
+//    {
+//        await file.CopyToAsync(stream);
+//    }
+//});
+
+app.MapPost("/upload", async (HttpRequest req) =>
+{
+    if (!req.HasFormContentType)
+    {
+        return Results.BadRequest();
+    }
+
+    var form = await req.ReadFormAsync();
+    var file = form.Files["file"];
+
+    if (file is null)
+    {
+        return Results.BadRequest();
+    }
+
+    var uploads = file.FileName;
+    using var fileStream = File.OpenWrite(uploads);
+    using var uploadStream = file.OpenReadStream();
+    await uploadStream.CopyToAsync(fileStream);
+
+    return Results.NoContent();
+});
+
 app.Run();
